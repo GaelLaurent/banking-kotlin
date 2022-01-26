@@ -9,16 +9,23 @@ And to learn Kotlin too !!! 🥳
 
 I will try to keep note of what I learned, each time I learn something.
 
-## The subject
+## The domain
 
 A banking system !
 
 - Someone can create an account with a first positive deposit.
   - The deposit is an amount of money in a specified currency.
-- An external currency system allow to know currencies exchange rates. 
-- Someone can make a deposit of a positive amount of money.
-- Someone can withdraw a positive amount of money.
+- An external currency system allows requesting currencies exchange rates. 
+- A user can make a deposit of a positive amount of money.
+- A user can withdraw a positive amount of money.
   - It's not possible to withdraw more money than the current account balance.
-- Someone can make a bank transfer to another account.
-  - It's not possible to transfer more money than the current account balance.
+- A user can 
 - Each operation is sent to the account owner by mail and instant messaging.
+
+![Event Storming](docs/event_storming.jpg)
+
+## Some rules
+- Logger will be an infra
+- No constructor -> only factory method with intention
+- 0 ORM
+- 0 primitive in the domain
