@@ -22,7 +22,19 @@ A banking system !
 - A user can 
 - Each operation is sent to the account owner by mail and instant messaging.
 
+### Software modeling
 ![Event Storming](docs/event_storming.jpg)
+
+### Context map
+![Context Map](docs/context_map.jpg)
+
+### Bounded Context Canvas
+#### Account
+![Account BCC](docs/account_bcc.jpg)
+#### Notification
+![Notification BCC](docs/notification_bcc.jpg)
+#### Exchange rate
+![Exchange Rate BCC](docs/exchange_rate_bcc.jpg)
 
 ## Some rules
 - Logger will be an infra
