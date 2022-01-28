@@ -21,6 +21,7 @@ A banking system !
   - It's not possible to withdraw more money than the current account balance.
 - Each operation is sent to the account owner by mail and instant messaging.
 
+## Design
 ### Software modeling
 
 Since the case is pretty simple, I only made a Software modeling Event Storming.  
