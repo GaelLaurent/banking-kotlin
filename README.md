@@ -22,18 +22,31 @@ A banking system !
 - Each operation is sent to the account owner by mail and instant messaging.
 
 ### Software modeling
+
+Since the case is pretty simple, I only made a Software modeling Event Storming.  
+
 ![Event Storming](docs/event_storming.jpg)
+
+Because of the simplicity of this example we have one bounded context by domain, but it's not always the case.
+
+3 bounded context was discovered during this Event Storming:
+- **Account:** the context handling all the account operation
+- **Notification:** the context handling the notification to the users
+- **Exchange rate:** this one is not visible in the Event Storming because he's only providing an API to get the exchange rate between 2 currencies. It's external service which is only visible has a read model in the Event Storming because he has no transaction or domain rule to validate.
 
 ### Context map
 ![Context Map](docs/context_map.jpg)
 
 ### Bounded Context Canvas
-#### Account
+#### Account bounded context
 ![Account BCC](docs/account_bcc.jpg)
-#### Notification
+This bounded context has only one aggregate: Account.
+#### Notification bounded context
 ![Notification BCC](docs/notification_bcc.jpg)
-#### Exchange rate
+This bounded context has only one aggregate: Notification.
+#### Exchange rate bounded context
 ![Exchange Rate BCC](docs/exchange_rate_bcc.jpg)
+This context will be implemented by the `exchangeratesapi.io` API.
 
 ## Some rules
 - Logger will be an infra
