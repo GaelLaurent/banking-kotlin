@@ -19,7 +19,6 @@ A banking system !
 - A user can make a deposit of a positive amount of money.
 - A user can withdraw a positive amount of money.
   - It's not possible to withdraw more money than the current account balance.
-- A user can 
 - Each operation is sent to the account owner by mail and instant messaging.
 
 ### Software modeling
