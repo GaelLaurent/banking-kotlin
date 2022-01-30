@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.util.*
 
-class AccountOpeningTest {
+internal class AccountOpeningTest {
 
     @Test
     fun `a user should be able to open an account given a first deposit`() {
