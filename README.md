@@ -50,6 +50,12 @@ This bounded context has only one aggregate: Notification.
 This context will be implemented by the `exchangeratesapi.io` API.
 
 ## Some rules
+- Use the DDD tactical patterns
+  - Aggregate
+  - Entity
+  - Value object
+  - Domain Event
+  - Repository
 - Logger will be an infra
 - No constructor -> only factory method with intention
 - 0 ORM
