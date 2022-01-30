@@ -11,3 +11,9 @@ data class AccountOpened(
     val currency: Currency,
     val firstDeposit: Float
 ): DomainEvent
+
+data class MoneyDeposited(
+    val accountUUID: String,
+    val value: Float,
+    val currency: Currency
+): DomainEvent

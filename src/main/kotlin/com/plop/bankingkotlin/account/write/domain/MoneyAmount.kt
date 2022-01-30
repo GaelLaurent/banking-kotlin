@@ -1,14 +1,6 @@
 package com.plop.bankingkotlin.account.write.domain
 
-class MoneyAmount private constructor(private val value: Float, private val currency: Currency) {
-
-    fun getValue(): Float {
-        return value
-    }
-
-    fun getCurrency(): Currency {
-        return currency
-    }
+data class MoneyAmount private constructor(val value: Float, val currency: Currency) {
 
     companion object {
         fun create(value: Float, currency: Currency) = MoneyAmount(value, currency)

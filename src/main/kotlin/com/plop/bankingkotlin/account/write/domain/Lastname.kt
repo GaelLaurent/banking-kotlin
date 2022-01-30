@@ -1,10 +1,6 @@
 package com.plop.bankingkotlin.account.write.domain
 
-class Lastname private constructor(private val value: String) {
-
-    fun getValue(): String {
-        return value
-    }
+data class Lastname private constructor(val value: String) {
 
     companion object {
         fun create(value: String) = Lastname(value)
