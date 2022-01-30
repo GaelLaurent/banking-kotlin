@@ -24,9 +24,7 @@ internal class AccountOpeningTest {
         val account = Account.open(accountId, firstname, lastname, email, phoneNumber, currency, firstDeposit)
         val result = account.getUncommittedChanges()
 
-        val expected = listOf(
-            AccountOpened("82df9bd1-d2e1-4e80-9850-4247eb67bdd1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 15.42f)
-        )
+        val expected = AccountOpened("82df9bd1-d2e1-4e80-9850-4247eb67bdd1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 15.42f)
 
         // then
         assertThat(result).isEqualTo(expected)
@@ -50,9 +48,7 @@ internal class AccountOpeningTest {
         val account = Account.open(accountId, firstname, lastname, email, phoneNumber, Currency.EURO, firstDeposit)
         val result = account.getUncommittedChanges()
 
-        val expected = listOf(
-            AccountOpeningRejected("82df9bd1-d2e1-4e80-9850-4247eb67bdd1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03")
-        )
+        val expected = AccountOpeningRejected("82df9bd1-d2e1-4e80-9850-4247eb67bdd1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03")
 
         // then
         assertThat(result).isEqualTo(expected)

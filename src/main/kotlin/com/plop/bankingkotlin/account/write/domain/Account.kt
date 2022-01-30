@@ -2,21 +2,22 @@ package com.plop.bankingkotlin.account.write.domain
 
 import com.plop.bankingkotlin.buildingBlocks.AggregateRoot
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
+import com.plop.bankingkotlin.buildingBlocks.NothingHappened
 
 class Account(private val accountId: AccountId) : AggregateRoot {
 
-    private var changes = mutableListOf<DomainEvent>()
+    private var change: DomainEvent = NothingHappened()
 
     override fun getId(): String {
         return accountId.getValue().toString()
     }
 
     private fun applyChanges(event: DomainEvent) {
-        changes.add(event)
+        change = event
     }
 
-    fun getUncommittedChanges(): List<DomainEvent> {
-        return changes.toList()
+    fun getUncommittedChanges(): DomainEvent {
+        return change
     }
 
     companion object {

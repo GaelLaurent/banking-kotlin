@@ -45,7 +45,7 @@ class Command2Handler : CommandHandler<Command2> {
 
     override fun handle(command: Command2): CommandResult {
         commandDispatched = command
-        return CommandResult.empty()
+        return CommandResult.of(Event())
     }
 
     override fun isAssignedTo() = Command2::class
@@ -62,7 +62,7 @@ class Command1Handler: CommandHandler<Command1> {
 
     override fun handle(command: Command1): CommandResult {
         commandDispatched = command
-        return CommandResult.empty()
+        return CommandResult.of(Event())
     }
 
     override fun isAssignedTo() = Command1::class
@@ -72,5 +72,7 @@ class Command1Handler: CommandHandler<Command1> {
 class Command1: Command {
 
 }
+
+class Event: DomainEvent
 
 

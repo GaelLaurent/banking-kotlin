@@ -17,15 +17,13 @@ internal class OpenAccountHandlerTest {
 
         val handler = OpenAccountHandler()
 
-        val expectedEvents = listOf(
-            AccountOpened("c38fb97f-b7d7-4a92-858e-a49f6550adf1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 42f)
-        )
+        val expectedEvent = AccountOpened("c38fb97f-b7d7-4a92-858e-a49f6550adf1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 42f)
 
         // when
         val result = handler.handle(openAccount)
 
         // then
-        Assertions.assertThat(result.events).isEqualTo(expectedEvents)
+        Assertions.assertThat(result.event).isEqualTo(expectedEvent)
 
     }
 }
