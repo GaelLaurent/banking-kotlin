@@ -172,3 +172,6 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,kotlin,intellij+all,macos
+
+# autoenv
+.autoenv.zsh
