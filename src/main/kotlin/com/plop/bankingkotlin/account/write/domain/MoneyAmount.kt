@@ -1,4 +1,4 @@
-package com.plop.bankingkotlin.account.command.domain
+package com.plop.bankingkotlin.account.write.domain
 
 class MoneyAmount private constructor(private val value: Float, private val currency: Currency) {
 

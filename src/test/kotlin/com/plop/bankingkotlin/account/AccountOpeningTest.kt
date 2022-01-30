@@ -1,7 +1,7 @@
 package com.plop.bankingkotlin.account
 
-import com.plop.bankingkotlin.account.command.domain.*
-import com.plop.bankingkotlin.account.command.domain.Currency
+import com.plop.bankingkotlin.account.write.domain.*
+import com.plop.bankingkotlin.account.write.domain.Currency
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.util.*

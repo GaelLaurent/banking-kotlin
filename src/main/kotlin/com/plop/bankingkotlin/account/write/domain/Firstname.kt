@@ -1,4 +1,4 @@
-package com.plop.bankingkotlin.account.command.domain
+package com.plop.bankingkotlin.account.write.domain
 
 class Firstname private constructor(private val value: String) {
 

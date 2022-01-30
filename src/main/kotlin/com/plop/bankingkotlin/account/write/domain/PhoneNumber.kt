@@ -1,4 +1,4 @@
-package com.plop.bankingkotlin.account.command.domain
+package com.plop.bankingkotlin.account.write.domain
 
 class PhoneNumber private constructor(private val value: String) {
 

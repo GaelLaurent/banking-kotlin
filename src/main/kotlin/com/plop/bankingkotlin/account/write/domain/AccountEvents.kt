@@ -1,4 +1,4 @@
-package com.plop.bankingkotlin.account.command.domain
+package com.plop.bankingkotlin.account.write.domain
 
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 import java.util.*
