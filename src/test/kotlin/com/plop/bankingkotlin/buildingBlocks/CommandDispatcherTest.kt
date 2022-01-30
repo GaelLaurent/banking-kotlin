@@ -43,8 +43,9 @@ class Command2Handler : CommandHandler<Command2> {
 
     var commandDispatched: Command? = null
 
-    override fun handle(command: Command2) {
+    override fun handle(command: Command2): CommandResult {
         commandDispatched = command
+        return CommandResult.empty()
     }
 
     override fun isAssignedTo() = Command2::class
@@ -59,8 +60,9 @@ class Command1Handler: CommandHandler<Command1> {
 
     var commandDispatched: Command? = null
 
-    override fun handle(command: Command1) {
+    override fun handle(command: Command1): CommandResult {
         commandDispatched = command
+        return CommandResult.empty()
     }
 
     override fun isAssignedTo() = Command1::class

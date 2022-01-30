@@ -1,10 +1,9 @@
 package com.plop.bankingkotlin.account.write.domain
 
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
-import java.util.*
 
 data class AccountOpened(
-    val accountUUID: UUID,
+    val accountUUID: String,
     val firstname: String,
     val lastname: String,
     val email: String,
@@ -14,7 +13,7 @@ data class AccountOpened(
 ): DomainEvent
 
 data class AccountOpeningRejected(
-    val accountUUID: UUID,
+    val accountUUID: String,
     val firstname: String,
     val lastname: String,
     val email: String,

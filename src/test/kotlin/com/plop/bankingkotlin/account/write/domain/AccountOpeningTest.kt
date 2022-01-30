@@ -1,7 +1,5 @@
-package com.plop.bankingkotlin.account
+package com.plop.bankingkotlin.account.write.domain
 
-import com.plop.bankingkotlin.account.write.domain.*
-import com.plop.bankingkotlin.account.write.domain.Currency
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.util.*
@@ -27,7 +25,7 @@ internal class AccountOpeningTest {
         val result = account.getUncommittedChanges()
 
         val expected = listOf(
-            AccountOpened(UUID.fromString("82df9bd1-d2e1-4e80-9850-4247eb67bdd1"),"Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 15.42f)
+            AccountOpened("82df9bd1-d2e1-4e80-9850-4247eb67bdd1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 15.42f)
         )
 
         // then
@@ -53,7 +51,7 @@ internal class AccountOpeningTest {
         val result = account.getUncommittedChanges()
 
         val expected = listOf(
-            AccountOpeningRejected(UUID.fromString("82df9bd1-d2e1-4e80-9850-4247eb67bdd1"),"Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03")
+            AccountOpeningRejected("82df9bd1-d2e1-4e80-9850-4247eb67bdd1","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03")
         )
 
         // then

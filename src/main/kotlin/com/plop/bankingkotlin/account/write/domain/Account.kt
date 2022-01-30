@@ -34,12 +34,12 @@ class Account(private val accountId: AccountId) : AggregateRoot {
 
             if (currency == firstDeposit.getCurrency()) {
 
-                val event = AccountOpened(accountId.getValue(), firstname.getValue(), lastname.getValue(), email.getValue(), phoneNumber.getValue(), currency, firstDeposit.getValue())
+                val event = AccountOpened(accountId.getValue().toString(), firstname.getValue(), lastname.getValue(), email.getValue(), phoneNumber.getValue(), currency, firstDeposit.getValue())
                 account.applyChanges(event)
 
             } else {
 
-                val event = AccountOpeningRejected(accountId.getValue(), firstname.getValue(), lastname.getValue(), email.getValue(), phoneNumber.getValue())
+                val event = AccountOpeningRejected(accountId.getValue().toString(), firstname.getValue(), lastname.getValue(), email.getValue(), phoneNumber.getValue())
                 account.applyChanges(event)
 
             }

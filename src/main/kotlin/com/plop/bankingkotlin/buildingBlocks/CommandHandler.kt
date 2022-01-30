@@ -6,6 +6,6 @@ interface CommandHandler<C: Command> {
 
     fun isAssignedTo(): KClass<C>
 
-    fun handle(command: C)
+    fun handle(command: C): CommandResult
 
 }
