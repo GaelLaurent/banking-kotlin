@@ -14,12 +14,12 @@ class CommandDispatcher: CommandBusMiddleware {
 
     override fun <C : Command> dispatch(command: C) {
 
-        @Suppress("UNCHECKED_CAST")
-        val commandHandler = registeredCommandHandlers[command::class] as CommandHandler<C>?
-
-        if (commandHandler == null) {
+        if (registeredCommandHandlers[command::class] == null) {
             throw CommandBusMiddlewareException.commandHandlerNotFound(command)
         }
+
+        @Suppress("UNCHECKED_CAST")
+        val commandHandler = registeredCommandHandlers[command::class] as CommandHandler<C>
 
         commandHandler.handle(command)
 
