@@ -12,3 +12,11 @@ data class AccountOpened(
     val currency: Currency,
     val firstDeposit: Float
 ): DomainEvent
+
+data class AccountOpeningRejected(
+    val accountUUID: UUID,
+    val firstname: String,
+    val lastname: String,
+    val email: String,
+    val phoneNumber: String,
+): DomainEvent

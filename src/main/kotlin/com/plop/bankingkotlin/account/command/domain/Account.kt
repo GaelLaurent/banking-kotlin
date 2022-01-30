@@ -1,20 +1,21 @@
 package com.plop.bankingkotlin.account.command.domain
 
 import com.plop.bankingkotlin.buildingBlocks.AggregateRoot
+import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 
 class Account(private val accountId: AccountId) : AggregateRoot {
 
-    private var changes = mutableListOf<AccountOpened>()
+    private var changes = mutableListOf<DomainEvent>()
 
     override fun getId(): String {
         return accountId.getValue().toString()
     }
 
-    private fun applyChanges(event: AccountOpened) {
+    private fun applyChanges(event: DomainEvent) {
         changes.add(event)
     }
 
-    fun getUncommittedChanges(): List<AccountOpened> {
+    fun getUncommittedChanges(): List<DomainEvent> {
         return changes.toList()
     }
 
@@ -31,9 +32,18 @@ class Account(private val accountId: AccountId) : AggregateRoot {
 
             val account = Account(accountId)
 
-            val event = AccountOpened(accountId.getValue(), firstname.getValue(), lastname.getValue(), email.getValue(), phoneNumber.getValue(), currency, firstDeposit.getValue())
+            if (currency == firstDeposit.getCurrency()) {
 
-            account.applyChanges(event)
+                val event = AccountOpened(accountId.getValue(), firstname.getValue(), lastname.getValue(), email.getValue(), phoneNumber.getValue(), currency, firstDeposit.getValue())
+                account.applyChanges(event)
+
+            } else {
+
+                val event = AccountOpeningRejected(accountId.getValue(), firstname.getValue(), lastname.getValue(), email.getValue(), phoneNumber.getValue())
+                account.applyChanges(event)
+
+            }
+
 
             return account
         }
