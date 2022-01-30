@@ -17,9 +17,11 @@ class CommandDispatcher: CommandBusMiddleware {
         @Suppress("UNCHECKED_CAST")
         val commandHandler = registeredCommandHandlers[command::class] as CommandHandler<C>?
 
-        if (commandHandler != null) {
-            commandHandler.handle(command)
+        if (commandHandler == null) {
+            throw CommandBusMiddlewareException.commandHandlerNotFound(command)
         }
+
+        commandHandler.handle(command)
 
     }
 
