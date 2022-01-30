@@ -66,3 +66,7 @@ This context will be implemented by the `exchangeratesapi.io` API.
 There is several ways to implement the projection to a read model:
 - as event handler
 - by the event store
+
+# TODO
+- implement wrong path
+- add another currency
