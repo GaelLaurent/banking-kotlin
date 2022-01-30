@@ -60,3 +60,9 @@ This context will be implemented by the `exchangeratesapi.io` API.
 - No constructor -> only factory method with intention
 - 0 ORM
 - 0 primitive in the domain
+
+## Reflection
+### Projection
+There is several ways to implement the projection to a read model:
+- as event handler
+- by the event store
