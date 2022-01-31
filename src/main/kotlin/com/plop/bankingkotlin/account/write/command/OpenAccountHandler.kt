@@ -2,14 +2,13 @@ package com.plop.bankingkotlin.account.write.command
 
 import com.plop.bankingkotlin.account.write.domain.*
 import com.plop.bankingkotlin.buildingBlocks.CommandHandler
-import com.plop.bankingkotlin.buildingBlocks.CommandResult
 import java.util.*
 
 class OpenAccountHandler(private val accountEventStore: AccountEventStore): CommandHandler<OpenAccount> {
 
     override fun isAssignedTo() = OpenAccount::class
 
-    override fun handle(command: OpenAccount): CommandResult {
+    override fun handle(command: OpenAccount) {
 
         val accountUUID = UUID.fromString(command.accountId)
         val accountId = AccountId.create(accountUUID)
@@ -27,7 +26,6 @@ class OpenAccountHandler(private val accountEventStore: AccountEventStore): Comm
 
         accountEventStore.store(change)
 
-        return CommandResult.of(change)
     }
 
 }
