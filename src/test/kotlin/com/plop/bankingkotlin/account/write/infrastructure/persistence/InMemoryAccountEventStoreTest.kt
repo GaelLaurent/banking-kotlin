@@ -39,4 +39,20 @@ internal class InMemoryAccountEventStoreTest {
 
     }
 
+    @Test
+    fun `should return different id after several id generation`() {
+
+        // given
+        val eventStore = InMemoryAccountEventStore()
+
+        // when
+        val id1 = eventStore.nextId()
+        val id2 = eventStore.nextId()
+        val id3 = eventStore.nextId()
+
+        // then
+        assertThat(setOf(id1, id2, id3)).hasSize(3)
+
+    }
+
 }
