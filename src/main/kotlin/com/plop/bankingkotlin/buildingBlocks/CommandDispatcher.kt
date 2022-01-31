@@ -2,14 +2,12 @@ package com.plop.bankingkotlin.buildingBlocks
 
 import kotlin.reflect.KClass
 
-class CommandDispatcher: CommandBusMiddleware {
+class CommandDispatcher(commandHandlers: List<CommandHandler<*>>) : CommandBusMiddleware {
 
     private var registeredCommandHandlers: Map<KClass<out Command>, CommandHandler<*>> = mapOf()
 
-    constructor(commandHandlers: List<CommandHandler<*>>) {
-
+    init {
         registeredCommandHandlers = commandHandlers.associateBy { it.isAssignedTo() }
-
     }
 
     override fun <C : Command> dispatch(command: C) {
