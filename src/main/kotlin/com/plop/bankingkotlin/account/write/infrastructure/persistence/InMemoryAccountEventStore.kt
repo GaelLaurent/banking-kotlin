@@ -25,11 +25,11 @@ class InMemoryAccountEventStore: AccountEventStore {
     }
 
     override fun store(domainEvent: DomainEvent) {
-        var aggregateEvents = events[domainEvent.aggregateId]
+        var aggregateEvents = events[domainEvent.getAggregateId()]
 
         if (aggregateEvents == null) {
             aggregateEvents = mutableListOf()
-            events[domainEvent.aggregateId] = aggregateEvents
+            events[domainEvent.getAggregateId()] = aggregateEvents
         }
 
         aggregateEvents.add(domainEvent)

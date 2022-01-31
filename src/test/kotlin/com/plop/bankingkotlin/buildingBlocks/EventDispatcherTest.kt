@@ -50,7 +50,7 @@ class Event1Handler2: EventHandler<Event1> {
 
 }
 
-class Event1(override val aggregateId: String) : DomainEvent
+class Event1(override val id: String) : AggregateEvent()
 
 class Event2Handler: EventHandler<Event2> {
 
@@ -64,5 +64,10 @@ class Event2Handler: EventHandler<Event2> {
 
 }
 
-class Event2(override val aggregateId: String) : DomainEvent
+class Event2(override val id: String) : AggregateEvent()
 
+sealed class AggregateEvent : DomainEvent {
+    override fun getAggregateId(): String = id
+
+    abstract val id: String
+}
