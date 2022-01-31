@@ -1,5 +1,6 @@
 package com.plop.bankingkotlin.account.write.command
 
+import com.plop.bankingkotlin.account.write.domain.Account
 import com.plop.bankingkotlin.account.write.domain.AccountEventStore
 import com.plop.bankingkotlin.account.write.domain.MoneyAmount
 import com.plop.bankingkotlin.buildingBlocks.CommandHandler
@@ -11,7 +12,7 @@ class DepositMoneyHandler(private val accountEventStore: AccountEventStore)
 
     override fun handle(command: DepositMoney) {
 
-        val account = accountEventStore.getById(command.accountId)
+        val account = Account.fromHistory(accountEventStore.getById(command.accountId))
 
         account.depositMoney(MoneyAmount.create(command.value, command.currency))
 

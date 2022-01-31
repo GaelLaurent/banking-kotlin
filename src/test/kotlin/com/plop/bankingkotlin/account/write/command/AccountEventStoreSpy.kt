@@ -1,7 +1,7 @@
 package com.plop.bankingkotlin.account.write.command
 
-import com.plop.bankingkotlin.account.write.domain.Account
 import com.plop.bankingkotlin.account.write.domain.AccountEventStore
+import com.plop.bankingkotlin.account.write.domain.AccountHistory
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 
 class AccountEventStoreSpy(private val eventStore: AccountEventStore) : AccountEventStore {
@@ -12,7 +12,7 @@ class AccountEventStoreSpy(private val eventStore: AccountEventStore) : AccountE
         return eventStore.nextId()
     }
 
-    override fun getById(accountId: String): Account {
+    override fun getById(accountId: String): AccountHistory {
         return eventStore.getById(accountId)
     }
 

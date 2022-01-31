@@ -2,8 +2,8 @@ package com.plop.bankingkotlin.account.write.infrastructure.controller
 
 import com.plop.bankingkotlin.account.write.command.DepositMoney
 import com.plop.bankingkotlin.account.write.command.OpenAccount
-import com.plop.bankingkotlin.account.write.domain.Account
 import com.plop.bankingkotlin.account.write.domain.AccountEventStore
+import com.plop.bankingkotlin.account.write.domain.AccountHistory
 import com.plop.bankingkotlin.account.write.domain.Currency
 import com.plop.bankingkotlin.buildingBlocks.Command
 import com.plop.bankingkotlin.buildingBlocks.CommandBusMiddleware
@@ -113,7 +113,7 @@ class AccountEventStoreFake : AccountEventStore {
         return "d5c4ffca-45e3-41fe-8ade-4fedbeafabb0"
     }
 
-    override fun getById(accountId: String): Account {
+    override fun getById(accountId: String): AccountHistory {
         TODO("Not needed")
     }
 

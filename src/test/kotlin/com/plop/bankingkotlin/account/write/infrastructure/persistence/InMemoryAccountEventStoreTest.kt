@@ -1,7 +1,9 @@
 package com.plop.bankingkotlin.account.write.infrastructure.persistence
 
+import com.plop.bankingkotlin.account.write.domain.AccountHistory
 import com.plop.bankingkotlin.account.write.domain.AccountOpened
 import com.plop.bankingkotlin.account.write.domain.Currency
+import com.plop.bankingkotlin.account.write.domain.MoneyDeposited
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -17,10 +19,20 @@ internal class InMemoryAccountEventStoreTest {
 
         // when
         eventStore.store(AccountOpened(id,"Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 50f))
-        val account = eventStore.getById(id)
+        eventStore.store(MoneyDeposited(id, 50f, Currency.DOLLAR))
+        eventStore.store(AccountOpened("555be785-f92c-45ec-9dee-c3ae9632bf53","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 50f))
+        val aggregateHistory = eventStore.getById(id)
+
+        val accountHistoryExpected = AccountHistory(
+            id,
+            listOf(
+                AccountOpened(id, "Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 50f),
+                MoneyDeposited(id, 50f, Currency.DOLLAR)
+            )
+        )
 
         // then
-        assertThat(account.getId()).isEqualTo(id)
+        assertThat(aggregateHistory).isEqualTo(accountHistoryExpected)
 
     }
 

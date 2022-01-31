@@ -1,9 +1,7 @@
 package com.plop.bankingkotlin.account.write.infrastructure.persistence
 
-import com.plop.bankingkotlin.account.write.domain.Account
 import com.plop.bankingkotlin.account.write.domain.AccountEventStore
 import com.plop.bankingkotlin.account.write.domain.AccountHistory
-import com.plop.bankingkotlin.account.write.domain.AccountId
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 import org.springframework.stereotype.Component
 import java.util.*
@@ -17,13 +15,13 @@ class InMemoryAccountEventStore: AccountEventStore {
         return UUID.randomUUID().toString()
     }
 
-    override fun getById(accountId: String): Account {
+    override fun getById(accountId: String): AccountHistory {
         val events = events[accountId]
 
         if (events == null) {
             throw PersistenceException.aggregateNotFound(accountId)
         }
-        return Account.fromHistory(AccountHistory(accountId, events))
+        return AccountHistory(accountId, events)
     }
 
     override fun store(domainEvent: DomainEvent) {

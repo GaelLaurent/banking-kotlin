@@ -5,7 +5,7 @@ import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 interface AccountEventStore {
     fun nextId(): String
 
-    fun getById(accountId: String): Account
+    fun getById(accountId: String): AccountHistory
 
     fun store(domainEvent: DomainEvent)
 

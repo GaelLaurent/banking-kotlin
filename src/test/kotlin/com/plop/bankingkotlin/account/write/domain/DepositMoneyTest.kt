@@ -3,7 +3,6 @@ package com.plop.bankingkotlin.account.write.domain
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import java.util.*
 
 internal class DepositMoneyTest {
 
