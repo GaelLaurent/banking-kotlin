@@ -1,6 +1,6 @@
 package com.plop.bankingkotlin.account.write.domain
 
-import com.plop.bankingkotlin.buildingBlocks.DomainEvent
+import com.plop.bankingkotlin.buildingBlocks.AggregateHistory
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -11,10 +11,10 @@ internal class DepositMoneyTest {
 
         // given
         val id = "82df9bd1-d2e1-4e80-9850-4247eb67bdd1"
-        val events = listOf<DomainEvent>(
+        val events = listOf<AccountEvent>(
             AccountOpened(id,"Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 50f)
         )
-        val account = Account.fromHistory(AccountHistory(id, events))
+        val account = Account.fromHistory(AggregateHistory(id, events))
 
         val moneyAmount = MoneyAmount.create(56f, Currency.DOLLAR)
 

@@ -1,22 +1,22 @@
 package com.plop.bankingkotlin.account.write.domain
 
+import com.plop.bankingkotlin.buildingBlocks.AggregateHistory
 import com.plop.bankingkotlin.buildingBlocks.AggregateRoot
-import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 import java.util.*
 
 class Account private constructor(private val accountId: AccountId) : AggregateRoot {
 
-    private var change: DomainEvent = NothingHappened
+    private var change: AccountEvent = NothingHappened
 
     override fun getId(): String {
         return accountId.value.toString()
     }
 
-    private fun applyChanges(event: DomainEvent) {
+    private fun applyChanges(event: AccountEvent) {
         change = event
     }
 
-    fun getUncommittedChange(): DomainEvent {
+    fun getUncommittedChange(): AccountEvent {
         return change
     }
 
@@ -44,7 +44,7 @@ class Account private constructor(private val accountId: AccountId) : AggregateR
             return account
         }
 
-        fun fromHistory(history: AccountHistory): Account {
+        fun fromHistory(history: AggregateHistory<AccountEvent>): Account {
             return Account(AccountId.create(UUID.fromString(history.accountId)))
         }
     }

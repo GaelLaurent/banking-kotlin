@@ -2,12 +2,12 @@ package com.plop.bankingkotlin.account.write.infrastructure.controller
 
 import com.plop.bankingkotlin.account.write.command.DepositMoney
 import com.plop.bankingkotlin.account.write.command.OpenAccount
+import com.plop.bankingkotlin.account.write.domain.AccountEvent
 import com.plop.bankingkotlin.account.write.domain.AccountEventStore
-import com.plop.bankingkotlin.account.write.domain.AccountHistory
 import com.plop.bankingkotlin.account.write.domain.Currency
+import com.plop.bankingkotlin.buildingBlocks.AggregateHistory
 import com.plop.bankingkotlin.buildingBlocks.Command
 import com.plop.bankingkotlin.buildingBlocks.CommandBusMiddleware
-import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -113,11 +113,11 @@ class AccountEventStoreFake : AccountEventStore {
         return "d5c4ffca-45e3-41fe-8ade-4fedbeafabb0"
     }
 
-    override fun getById(accountId: String): AccountHistory {
+    override fun getById(accountId: String): AggregateHistory<AccountEvent> {
         TODO("Not needed")
     }
 
-    override fun store(domainEvent: DomainEvent) {
+    override fun store(domainEvent: AccountEvent) {
         TODO("Not needed")
     }
 
