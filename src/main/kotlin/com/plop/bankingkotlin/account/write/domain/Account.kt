@@ -2,7 +2,6 @@ package com.plop.bankingkotlin.account.write.domain
 
 import com.plop.bankingkotlin.buildingBlocks.AggregateRoot
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
-import com.plop.bankingkotlin.buildingBlocks.NothingHappened
 import java.util.*
 
 class Account private constructor(private val accountId: AccountId) : AggregateRoot {

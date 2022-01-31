@@ -17,3 +17,5 @@ data class MoneyDeposited(
     val value: Float,
     val currency: Currency
 ): DomainEvent
+
+class NothingHappened(override val aggregateId: String) : DomainEvent
