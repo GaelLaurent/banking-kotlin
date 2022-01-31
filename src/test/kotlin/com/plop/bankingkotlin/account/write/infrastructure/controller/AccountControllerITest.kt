@@ -1,5 +1,6 @@
 package com.plop.bankingkotlin.account.write.infrastructure.controller
 
+import com.plop.bankingkotlin.account.write.command.DepositMoney
 import com.plop.bankingkotlin.account.write.command.OpenAccount
 import com.plop.bankingkotlin.account.write.domain.AccountEventStore
 import com.plop.bankingkotlin.account.write.domain.Currency
@@ -71,6 +72,35 @@ internal class AccountControllerITest(
         assertThat(commandBusFake.commandDispatched).isEqualTo(OpenAccount(id,
             "Bob", "Mc Donald", "bob.macdonald@plop.com",
             "05 03 03 03 03", Currency.DOLLAR, 42f))
+
+    }
+
+    @Test
+    fun `should return 204 when a deposit is made`() {
+        // given
+        val id = "2aa43030-ec38-423a-86ae-ef742022d5c5"
+        val depositMoneyRequest = """
+            {
+                "value": 42,
+                "currency": "DOLLAR"
+            }
+        """
+
+        val headers = HttpHeaders()
+        headers.contentType = MediaType.APPLICATION_JSON
+
+        // when
+        val request = HttpEntity(depositMoneyRequest, headers)
+        val response = testRestTemplate.postForEntity(
+            "/account/${id}/deposit",
+            request,
+            String::class.java
+        )
+
+        // then
+        assertThat(response.statusCode).isEqualTo(HttpStatus.NO_CONTENT)
+
+        assertThat(commandBusFake.commandDispatched).isEqualTo(DepositMoney(id, 42f, Currency.DOLLAR))
 
     }
 
