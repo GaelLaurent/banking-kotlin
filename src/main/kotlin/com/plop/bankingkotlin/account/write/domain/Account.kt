@@ -45,7 +45,7 @@ class Account private constructor(private val accountId: AccountId) : AggregateR
         }
 
         fun fromHistory(history: AggregateHistory<AccountEvent>): Account {
-            return Account(AccountId.create(UUID.fromString(history.accountId)))
+            return Account(AccountId.create(UUID.fromString(history.aggregateId)))
         }
     }
 

@@ -1,3 +1,3 @@
 package com.plop.bankingkotlin.buildingBlocks
 
-data class AggregateHistory<E: DomainEvent>(val accountId: String, val events: List<E>)
+data class AggregateHistory<E: DomainEvent>(val aggregateId: String, val events: List<E>)
