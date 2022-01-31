@@ -24,4 +24,7 @@ data class MoneyDeposited(
     val currency: Currency
 ): AccountEvent()
 
-class NothingHappened(override val accountId: String) : AccountEvent()
+object NothingHappened: AccountEvent() {
+    override val accountId: String
+        get() = ""
+}

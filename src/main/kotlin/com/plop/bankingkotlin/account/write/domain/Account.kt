@@ -6,7 +6,7 @@ import java.util.*
 
 class Account private constructor(private val accountId: AccountId) : AggregateRoot {
 
-    private var change: DomainEvent = NothingHappened("")
+    private var change: DomainEvent = NothingHappened
 
     override fun getId(): String {
         return accountId.value.toString()
