@@ -41,7 +41,7 @@ internal class AccountControllerITest(
     }
 
     @Test
-    fun `should return 201 when create a account`() {
+    fun `should dispatch OpenAccount command and return 201 when create a account`() {
         // given
         val id = accountEventStoreFake.nextId()
 
@@ -78,7 +78,7 @@ internal class AccountControllerITest(
     }
 
     @Test
-    fun `should return 204 when a deposit is made`() {
+    fun `should dispatch DepositMoney and return 204 when a deposit is made`() {
         // given
         val id = "2aa43030-ec38-423a-86ae-ef742022d5c5"
         val depositMoneyRequest = """
