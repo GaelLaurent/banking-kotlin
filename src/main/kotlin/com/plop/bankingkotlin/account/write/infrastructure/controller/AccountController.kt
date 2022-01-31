@@ -7,7 +7,6 @@ import com.plop.bankingkotlin.buildingBlocks.CommandBusMiddleware
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI
-import java.util.*
 
 @RestController
 @CrossOrigin(origins = ["*"], exposedHeaders = ["Location"])
