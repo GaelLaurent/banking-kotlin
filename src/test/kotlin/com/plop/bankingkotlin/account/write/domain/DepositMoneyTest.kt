@@ -15,7 +15,7 @@ internal class DepositMoneyTest {
         val events = listOf<DomainEvent>(
             AccountOpened(id,"Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 50f)
         )
-        val account = Account.fromHistory(AccountHistory(AccountId.create(UUID.fromString(id)), events))
+        val account = Account.fromHistory(AccountHistory(id, events))
 
         val moneyAmount = MoneyAmount.create(56f, Currency.DOLLAR)
 
@@ -25,7 +25,7 @@ internal class DepositMoneyTest {
         account.depositMoney(moneyAmount)
 
         // then
-        val result = account.getUncommittedChanges()
+        val result = account.getUncommittedChange()
         assertThat(result).isEqualTo(expected)
 
     }

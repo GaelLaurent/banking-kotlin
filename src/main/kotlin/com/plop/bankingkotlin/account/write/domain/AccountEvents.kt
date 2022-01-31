@@ -3,7 +3,7 @@ package com.plop.bankingkotlin.account.write.domain
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 
 data class AccountOpened(
-    val accountUUID: String,
+    override val aggregateId: String,
     val firstname: String,
     val lastname: String,
     val email: String,
@@ -13,7 +13,7 @@ data class AccountOpened(
 ): DomainEvent
 
 data class MoneyDeposited(
-    val accountUUID: String,
+    override val aggregateId: String,
     val value: Float,
     val currency: Currency
 ): DomainEvent

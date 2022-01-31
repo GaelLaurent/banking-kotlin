@@ -2,10 +2,12 @@ package com.plop.bankingkotlin.account.write.infrastructure.controller
 
 import com.plop.bankingkotlin.account.write.command.DepositMoney
 import com.plop.bankingkotlin.account.write.command.OpenAccount
+import com.plop.bankingkotlin.account.write.domain.Account
 import com.plop.bankingkotlin.account.write.domain.AccountEventStore
 import com.plop.bankingkotlin.account.write.domain.Currency
 import com.plop.bankingkotlin.buildingBlocks.Command
 import com.plop.bankingkotlin.buildingBlocks.CommandBusMiddleware
+import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -109,6 +111,14 @@ internal class AccountControllerITest(
 class AccountEventStoreFake : AccountEventStore {
     override fun nextId(): String {
         return "d5c4ffca-45e3-41fe-8ade-4fedbeafabb0"
+    }
+
+    override fun getById(accountId: String): Account {
+        TODO("Not needed")
+    }
+
+    override fun store(domainEvent: DomainEvent) {
+        TODO("Not needed")
     }
 
 }

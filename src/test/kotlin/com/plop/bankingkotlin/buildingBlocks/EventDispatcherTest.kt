@@ -9,7 +9,7 @@ internal class EventDispatcherTest {
     fun `should dispatch a event to the corresponding event handlers`() {
 
         // given
-        val eventToDispatch = Event1()
+        val eventToDispatch = Event1("")
         val eventHandlerToCall = Event1Handler()
         val eventHandler2ToCall = Event1Handler2()
         val eventHandlerNotToCall = Event2Handler()
@@ -50,9 +50,7 @@ class Event1Handler2: EventHandler<Event1> {
 
 }
 
-class Event1: DomainEvent {
-
-}
+class Event1(override val aggregateId: String) : DomainEvent
 
 class Event2Handler: EventHandler<Event2> {
 
@@ -66,7 +64,5 @@ class Event2Handler: EventHandler<Event2> {
 
 }
 
-class Event2: DomainEvent {
-
-}
+class Event2(override val aggregateId: String) : DomainEvent
 

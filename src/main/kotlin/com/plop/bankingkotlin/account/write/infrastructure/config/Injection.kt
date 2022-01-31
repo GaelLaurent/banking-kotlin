@@ -9,10 +9,13 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class Injection {
 
-    @Bean
-    fun eventBus() = CommandDispatcher(listOf(OpenAccountHandler()))
+    private val inMemoryAccountEventStore = InMemoryAccountEventStore()
+    private val commandBus = CommandDispatcher(listOf(OpenAccountHandler(inMemoryAccountEventStore)))
 
     @Bean
-    fun accountEventStore() = InMemoryAccountEventStore()
+    fun commandBus() = commandBus
+
+    @Bean
+    fun accountEventStore() = inMemoryAccountEventStore
 
 }

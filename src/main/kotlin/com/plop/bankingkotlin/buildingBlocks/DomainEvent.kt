@@ -1,5 +1,7 @@
 package com.plop.bankingkotlin.buildingBlocks
 
-interface DomainEvent
+interface DomainEvent {
+    val aggregateId: String
+}
 
-class NothingHappened: DomainEvent
+class NothingHappened(override val aggregateId: String) : DomainEvent

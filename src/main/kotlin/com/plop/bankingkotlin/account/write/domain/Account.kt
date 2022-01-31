@@ -3,10 +3,11 @@ package com.plop.bankingkotlin.account.write.domain
 import com.plop.bankingkotlin.buildingBlocks.AggregateRoot
 import com.plop.bankingkotlin.buildingBlocks.DomainEvent
 import com.plop.bankingkotlin.buildingBlocks.NothingHappened
+import java.util.*
 
 class Account private constructor(private val accountId: AccountId) : AggregateRoot {
 
-    private var change: DomainEvent = NothingHappened()
+    private var change: DomainEvent = NothingHappened("")
 
     override fun getId(): String {
         return accountId.value.toString()
@@ -16,7 +17,7 @@ class Account private constructor(private val accountId: AccountId) : AggregateR
         change = event
     }
 
-    fun getUncommittedChanges(): DomainEvent {
+    fun getUncommittedChange(): DomainEvent {
         return change
     }
 
@@ -45,7 +46,7 @@ class Account private constructor(private val accountId: AccountId) : AggregateR
         }
 
         fun fromHistory(history: AccountHistory): Account {
-            return Account(history.accountId)
+            return Account(AccountId.create(UUID.fromString(history.accountId)))
         }
     }
 

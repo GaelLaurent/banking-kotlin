@@ -26,7 +26,7 @@ internal class AccountOpeningTest {
         val account = Account.open(accountId, firstname, lastname, email, phoneNumber, currency, firstDeposit)
 
         // then
-        val result = account.getUncommittedChanges()
+        val result = account.getUncommittedChange()
         assertThat(result).isEqualTo(expected)
 
     }

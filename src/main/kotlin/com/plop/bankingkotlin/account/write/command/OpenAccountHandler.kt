@@ -5,7 +5,7 @@ import com.plop.bankingkotlin.buildingBlocks.CommandHandler
 import com.plop.bankingkotlin.buildingBlocks.CommandResult
 import java.util.*
 
-class OpenAccountHandler() : CommandHandler<OpenAccount> {
+class OpenAccountHandler(private val accountEventStore: AccountEventStore): CommandHandler<OpenAccount> {
 
     override fun isAssignedTo() = OpenAccount::class
 
@@ -23,9 +23,11 @@ class OpenAccountHandler() : CommandHandler<OpenAccount> {
 
         val account = Account.open(accountId, firstname, lastname, email, phoneNumber, command.currency, firstDeposit)
 
-        val events = account.getUncommittedChanges()
+        val change = account.getUncommittedChange()
 
-        return CommandResult.of(events)
+        accountEventStore.store(change)
+
+        return CommandResult.of(change)
     }
 
 }
