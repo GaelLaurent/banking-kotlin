@@ -12,7 +12,7 @@ class CommandDispatcher(commandHandlers: List<CommandHandler<*>>) : CommandBusMi
 
     override fun <C : Command> dispatch(command: C) {
 
-        if (registeredCommandHandlers[command::class] == null) {
+        if (isHandled(command)) {
             throw CommandBusMiddlewareException.commandHandlerNotFound(command)
         }
 
@@ -22,5 +22,7 @@ class CommandDispatcher(commandHandlers: List<CommandHandler<*>>) : CommandBusMi
         commandHandler.handle(command)
 
     }
+
+    private fun <C : Command> isHandled(command: C) = registeredCommandHandlers[command::class] == null
 
 }
