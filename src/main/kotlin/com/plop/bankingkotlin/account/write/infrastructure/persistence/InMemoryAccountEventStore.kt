@@ -9,14 +9,14 @@ import java.util.*
 @Component
 class InMemoryAccountEventStore: AccountEventStore {
 
-    private val events: MutableMap<String, MutableList<AccountEvent>> = mutableMapOf()
+    private val eventStreams: MutableMap<String, MutableList<AccountEvent>> = mutableMapOf()
 
     override fun nextId(): String {
         return UUID.randomUUID().toString()
     }
 
     override fun getById(accountId: String): AggregateHistory<AccountEvent> {
-        val events = events[accountId]
+        val events = eventStreams[accountId]
 
         if (events == null) {
             throw PersistenceException.aggregateNotFound(accountId)
@@ -25,19 +25,20 @@ class InMemoryAccountEventStore: AccountEventStore {
     }
 
     override fun store(domainEvent: AccountEvent) {
-        var aggregateStream = events[domainEvent.getAggregateId()]
+        var eventStream = eventStreams[domainEvent.getAggregateId()]
 
-        if (aggregateStream == null) {
-            aggregateStream = addNewAggregateStream(domainEvent)
+        if (eventStream == null) {
+            eventStream = createNewEventStream()
+            addEventStream(domainEvent, eventStream)
         }
 
-        aggregateStream.add(domainEvent)
+        eventStream.add(domainEvent)
     }
 
-    private fun addNewAggregateStream(domainEvent: AccountEvent): MutableList<AccountEvent> {
-        val aggregateStream = mutableListOf<AccountEvent>()
-        events[domainEvent.getAggregateId()] = aggregateStream
-        return aggregateStream
+    private fun addEventStream(domainEvent: AccountEvent, aggregateEvents: MutableList<AccountEvent>) {
+        eventStreams[domainEvent.getAggregateId()] = aggregateEvents
     }
+
+    private fun createNewEventStream(): MutableList<AccountEvent> = mutableListOf()
 
 }
