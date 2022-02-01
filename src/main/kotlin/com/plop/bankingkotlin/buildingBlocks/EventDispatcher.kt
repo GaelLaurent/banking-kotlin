@@ -12,12 +12,13 @@ class EventDispatcher(eventHandlers: List<EventHandler<out DomainEvent>>) : Even
 
     override fun <E : DomainEvent> dispatch(event: E) {
 
-        registeredCommandHandlers[event::class]?.forEach {
-            @Suppress("UNCHECKED_CAST")
-            val eventHandler = it as EventHandler<E>
-            eventHandler.handle(event)
-        }
+        registeredCommandHandlers[event::class]
+            ?.map { castHandler<E>(it) }
+            ?.forEach { it.handle(event) }
 
     }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <E : DomainEvent> castHandler(it: EventHandler<out DomainEvent>) = it as EventHandler<E>
 
 }
