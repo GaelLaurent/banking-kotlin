@@ -16,12 +16,9 @@ internal class InMemoryAccountEventStoreITest {
         val id = "8394050c-d533-45a8-be6e-d13c53908536"
 
         val eventStore = InMemoryAccountEventStore()
-
-        // when
         eventStore.store(AccountOpened(id,"Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 50f))
         eventStore.store(MoneyDeposited(id, 50f, Currency.DOLLAR))
         eventStore.store(AccountOpened("555be785-f92c-45ec-9dee-c3ae9632bf53","Bob", "Mc Donald", "bob.macdonald@plop.com", "05 03 03 03 03", Currency.DOLLAR, 50f))
-        val aggregateHistory = eventStore.getById(id)
 
         val accountHistoryExpected = AggregateHistory(
             id,
@@ -30,6 +27,9 @@ internal class InMemoryAccountEventStoreITest {
                 MoneyDeposited(id, 50f, Currency.DOLLAR)
             )
         )
+
+        // when
+        val aggregateHistory = eventStore.getById(id)
 
         // then
         assertThat(aggregateHistory).isEqualTo(accountHistoryExpected)
