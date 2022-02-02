@@ -25,15 +25,11 @@ class InMemoryAccountEventStore: AccountEventStore {
     }
 
     override fun store(domainEvent: AccountEvent) {
-        val eventStream = eventStreams.getOrDefault(domainEvent.getAggregateId(), createNewEventStream())
+        val aggregateId = domainEvent.getAggregateId()
 
-        addEventStream(domainEvent, eventStream)
+        val eventStream = eventStreams.getOrPut(aggregateId, this::createNewEventStream)
 
         eventStream.add(domainEvent)
-    }
-
-    private fun addEventStream(domainEvent: AccountEvent, aggregateEvents: MutableList<AccountEvent>) {
-        eventStreams[domainEvent.getAggregateId()] = aggregateEvents
     }
 
     private fun createNewEventStream(): MutableList<AccountEvent> = mutableListOf()
