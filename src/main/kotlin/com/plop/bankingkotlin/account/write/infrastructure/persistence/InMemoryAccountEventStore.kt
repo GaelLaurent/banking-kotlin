@@ -25,12 +25,9 @@ class InMemoryAccountEventStore: AccountEventStore {
     }
 
     override fun store(domainEvent: AccountEvent) {
-        var eventStream = eventStreams[domainEvent.getAggregateId()]
+        val eventStream = eventStreams.getOrDefault(domainEvent.getAggregateId(), createNewEventStream())
 
-        if (eventStream == null) {
-            eventStream = createNewEventStream()
-            addEventStream(domainEvent, eventStream)
-        }
+        addEventStream(domainEvent, eventStream)
 
         eventStream.add(domainEvent)
     }
