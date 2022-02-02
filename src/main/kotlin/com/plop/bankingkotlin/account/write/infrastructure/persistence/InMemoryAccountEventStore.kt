@@ -16,12 +16,15 @@ class InMemoryAccountEventStore: AccountEventStore {
     }
 
     override fun getById(accountId: String): AggregateHistory<AccountEvent> {
-        val events = eventStreams[accountId]
 
-        if (events == null) {
+        try {
+
+            val events = eventStreams.getValue(accountId)
+            return AggregateHistory(accountId, events)
+
+        } catch (e: NoSuchElementException) {
             throw PersistenceException.aggregateNotFound(accountId)
         }
-        return AggregateHistory(accountId, events)
     }
 
     override fun store(domainEvent: AccountEvent) {
